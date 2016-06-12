@@ -26,8 +26,8 @@ Paper authors:
 - [CVXOPT](http://cvxopt.org/) for its QP solver
 - [OpenRAVE](https://github.com/rdiankov/openrave) for forward kinematics and
   visualization ([installation instructions](https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html))
-- ``HRP4R.dae`` COLLADA model for HRP4 (md5sum ``bb009f37a1783e3b029a77acb6b92a28``)
-- ``pymanoid/hrp4.py``
+- ``HRP4R.dae`` COLLADA model for HRP4 (md5sum: ``bb009f37a1783e3b029a77acb6b92a28``)
+- ``pymanoid/hrp4.py`` (md5sum: ``82298e46b4d30106aff942dc6e867dfc``)
 
 Unfortunately it is unclear whether we can release the last two files due to
 copyright.
