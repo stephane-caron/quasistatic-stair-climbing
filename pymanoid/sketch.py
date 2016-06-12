@@ -27,7 +27,7 @@ import pylab
 from pymanoid.inverse_kinematics import VelocityTracker
 from pymanoid.inverse_kinematics import VelocityConstraint
 from pymanoid.trajectory import Trajectory, LinearChunk
-from numpy import array, dot, hstack, zeros
+from numpy import array, dot, hstack, ones, zeros
 from pylab import norm
 from scipy.linalg import block_diag
 from scipy.spatial import ConvexHull
@@ -46,6 +46,7 @@ def plot_polygon(poly, alpha=.4):
     polygon_color_index = (polygon_color_index + 1) % len(polygon_colors)
     if type(poly) is list:
         poly = array(poly)
+    pylab.ion()
     ax = pylab.gca()
     hull = ConvexHull(poly)
     poly = poly[hull.vertices, :]
@@ -160,7 +161,7 @@ class TrajectorySketch(object):
         # input to cdd.Matrix is [b, A]
         F = cdd.Matrix(hstack([_zeros, -CWC_all]), number_type='float')
         F.rep_type = cdd.RepType.INEQUALITY
-        # C w_all + d == 0
+        # C * w_all + d == 0
         _d = d.reshape((C.shape[0], 1))
         F.extend(hstack([_d, C]), linear=True)
         P = cdd.Polyhedron(F)
