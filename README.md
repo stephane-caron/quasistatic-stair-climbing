@@ -19,7 +19,7 @@ generated trajectories in a real-life experiment with the humanoid robot HRP-4.
 Paper authors:
 [Zhang Tianwei](http://zhangtianwei.info/),
 [Stéphane Caron](https://scaron.info) and
-[Yoshihiko Nakamura](http://www.ynl.t.u-tokyo.ac.jp/)
+[Yoshihiko Nakamura](http://www.ynl.t.u-tokyo.ac.jp/).
 
 ## Requirements
 
