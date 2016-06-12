@@ -14,7 +14,7 @@ segments are used to compute footholds and stability polygons. We evaluate our
 method on various staircases. We also demonstrate the feasibility of the
 generated trajectories in a real-life experiment with the humanoid robot HRP-4. 
 
-<img src="https://scaron.info/images/ijhr-2016.png" height="250" />
+<img src="https://scaron.info/images/ijhr-2016.png" width="600" align="center" />
 
 Authors:
 [Zhang Tianwei](http://zhangtianwei.info/),
