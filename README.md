@@ -16,7 +16,7 @@ generated trajectories in a real-life experiment with the humanoid robot HRP-4.
 
 <img src="https://scaron.info/images/ijhr-2016.png" width="600" align="center" />
 
-Authors:
+Paper authors:
 [Zhang Tianwei](http://zhangtianwei.info/),
 [Stéphane Caron](https://scaron.info) and
 [Yoshihiko Nakamura](http://www.ynl.t.u-tokyo.ac.jp/)
