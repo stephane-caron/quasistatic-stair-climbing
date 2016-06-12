@@ -31,7 +31,7 @@ Authors:
 - ``pymanoid/hrp4.py``
 
 Unfortunately it is unclear whether we can release the last two files due to
-copyright problems.
+copyright.
 
 ## Usage
 
