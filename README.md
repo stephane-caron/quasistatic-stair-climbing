@@ -23,10 +23,9 @@ Paper authors:
 
 ## Requirements
 
-- [CVXOPT](http://cvxopt.org/) (1.1.7)
-- [OpenRAVE](https://github.com/rdiankov/openrave) (0.9.0) see e.g. these
-  [installation
-  instructions](https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html)
+- [CVXOPT](http://cvxopt.org/) for its QP solver
+- [OpenRAVE](https://github.com/rdiankov/openrave) for forward kinematics and
+  visualization ([installation instructions](https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html))
 - ``HRP4R.dae`` COLLADA model for HRP4 (md5sum ``bb009f37a1783e3b029a77acb6b92a28``)
 - ``pymanoid/hrp4.py``
 
