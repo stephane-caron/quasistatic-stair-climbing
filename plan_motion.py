@@ -250,7 +250,10 @@ if __name__ == "__main__":
     right_step = PseudoFoot(env, 'RightStep', pose=right_pose, color='r')
     hrp.set_dof_values(q_start)
 
-    chunks = [step(rect) for rect in rectangles.rectangles]
+    if True:  # only do the first step (debug, etc.)
+        chunks = [step(rectangles.rectangles[0])]
+    else:  # plan for all steps
+        chunks = [step(rect) for rect in rectangles.rectangles]
     traj = Trajectory(chunks)
 
     import IPython
