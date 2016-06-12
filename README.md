@@ -1,6 +1,6 @@
 # Humanoid Stair Climbing based on dedicated Plane Segment Estimation and Multi-contact Motion Generation
 
-Source code for the motion-planning part of the paper.
+Source code for the motion-planning part of the [paper](https://scaron.info/research/ijhr-2016.html).
 
 ## Abstract
 
