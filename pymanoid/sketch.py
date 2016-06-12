@@ -172,14 +172,22 @@ class TrajectorySketch(object):
                 raise Exception("Not a polygon, V =\n%s" % repr(V))
             pG = dot(D, V[i, 1:])
             poly.append(pG)
-        plot_polygon(poly)
-        if False:
-            H = array(P.get_inequalities())
-            b, A = H[:, 0], H[:, 1:]
-            print A.shape
-            for com in com_positions:
-                if not all(dot(A, com) + b >= 0):
-                    raise Exception("Unstale CoM")
+        if True:  # Check 1: plot COM trajectory and polygons
+            plot_polygon(poly)
+        if True:  # Check 2: using full H-representation
+            # (autonomous but time consuming when designing the motion)
+            self.check_all_inequalities(com_positions, poly)
+
+    def check_all_inequalities(self, com_positions, poly):
+        V = hstack([ones((len(poly), 1)), array(poly)])
+        M = cdd.Matrix(V, number_type='float')
+        M.rep_type = cdd.RepType.GENERATOR
+        P = cdd.Polyhedron(M)
+        H = array(P.get_inequalities())
+        b, A = H[:, 0], H[:, 1:]
+        for com in com_positions:
+            if not all(dot(A, com[:2]) + b >= 0):
+                raise Exception("Unstale CoM")
 
     def add_linear_com_objective(self, tracker, start_com, target_com, gain):
         self.check_com_positions([start_com, target_com])
