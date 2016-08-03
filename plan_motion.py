@@ -36,7 +36,7 @@ from re import search
 rect_file = 'data/exp1/rectangles.txt'  # path to geometric data file
 post_contact_dz = 0.0
 export_slowdown = 2.
-record_video = True
+record_video = False
 
 
 def export_sketch(sketch, segment_id):
