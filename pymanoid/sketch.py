@@ -38,6 +38,7 @@ w_com = 1.
 w_link = 2e-1
 polygon_colors = ['b', 'g']
 polygon_color_index = 0
+all_plots = False
 
 
 def plot_polygon(poly, alpha=.4):
@@ -172,7 +173,7 @@ class TrajectorySketch(object):
                 raise Exception("Not a polygon, V =\n%s" % repr(V))
             pG = dot(D, V[i, 1:])
             poly.append(pG)
-        if True:  # Check 1: plot COM trajectory and polygons
+        if all_plots:  # Check 1: plot COM trajectory and polygons
             plot_polygon(poly)
         if True:  # Check 2: using full H-representation
             # (autonomous but time consuming when designing the motion)
@@ -195,9 +196,10 @@ class TrajectorySketch(object):
         com_traj = LinearChunk.interpolate(
             start_com, target_com, T=tracker.duration)
 
-        pylab.plot([start_com[0], target_com[0]],
-                   [start_com[1], target_com[1]],
-                   'r--', lw=5)
+        if all_plots:
+            pylab.plot([start_com[0], target_com[0]],
+                    [start_com[1], target_com[1]],
+                    'r--', lw=5)
 
         def vel_fun(t):
             # display_box(self.robot.env, target_com, color='g')

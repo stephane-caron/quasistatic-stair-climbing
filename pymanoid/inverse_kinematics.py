@@ -21,6 +21,8 @@
 
 import cvxopt
 import cvxopt.solvers
+import os
+import time
 
 cvxopt.solvers.options['show_progress'] = False  # disable cvxopt output
 
@@ -35,6 +37,13 @@ import cvxopt
 import cvxopt.solvers
 
 cvxopt.solvers.options['show_progress'] = False  # disable cvxopt output
+
+
+def take_screenshot(robot):
+    fname = './recording/%05d.png' % robot.frame_index
+    os.system('import -window %s %s' % (robot.window_id, fname))
+    robot.frame_index += 1
+    time.sleep(1. / 30)
 
 
 class Tracker(object):
@@ -173,6 +182,10 @@ class VelocityTracker(Tracker):
             q = q + qd * self.dt
             chunk_poly = PolynomialChunk.from_coeffs([qd, q], self.dt)
             chunks.append(chunk_poly)
+            i = int(t / self.dt)
+            if i % 6 == 0:
+                take_screenshot(self.robot)
+                print 1. / (self.dt * 6), "fps"
             self.robot.set_dof_values(q)  # needed for *.vel(t)
             self.robot.display_com(q)
             self.robot.display_floor_com(q)
