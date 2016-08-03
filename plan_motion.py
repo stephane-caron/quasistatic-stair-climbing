@@ -36,6 +36,7 @@ from re import search
 rect_file = 'data/exp1/rectangles.txt'  # path to geometric data file
 post_contact_dz = 0.0
 export_slowdown = 2.
+record_video = True
 
 
 def export_sketch(sketch, segment_id):
@@ -252,14 +253,14 @@ if __name__ == "__main__":
     right_step = PseudoFoot(env, 'RightStep', pose=right_pose, color='r')
     hrp.set_dof_values(q_start)
 
-    print "Preparing for screen recording..."
-    print "Please click on the OpenRAVE window."
-    line = os.popen('/usr/bin/xwininfo | grep "Window id:"').readlines()[0]
-    window_id = "0x%s" % search('0x([0-9a-f]+)', line).group(1)
-    print "Window id:", window_id
-
-    hrp.frame_index = 0
-    hrp.window_id = window_id
+    if record_video:
+        print "Preparing for screen recording..."
+        print "Please click on the OpenRAVE window."
+        line = os.popen('/usr/bin/xwininfo | grep "Window id:"').readlines()[0]
+        window_id = "0x%s" % search('0x([0-9a-f]+)', line).group(1)
+        print "Window id:", window_id
+        hrp.frame_index = 0
+        hrp.window_id = window_id
 
     if True:  # only do the first step (debug, etc.)
         chunks = [step(rectangles.rectangles[0])]

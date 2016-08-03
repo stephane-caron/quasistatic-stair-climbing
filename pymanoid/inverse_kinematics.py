@@ -169,6 +169,7 @@ class VelocityTracker(Tracker):
         return qd
 
     def track(self):
+        record_video = hasattr(self.robot, 'window_id')
         q = self.start_q.copy()
         chunks = []
 
@@ -182,10 +183,8 @@ class VelocityTracker(Tracker):
             q = q + qd * self.dt
             chunk_poly = PolynomialChunk.from_coeffs([qd, q], self.dt)
             chunks.append(chunk_poly)
-            i = int(t / self.dt)
-            if i % 6 == 0:
+            if record_video and int(t / self.dt) % 6 == 0:
                 take_screenshot(self.robot)
-                print 1. / (self.dt * 6), "fps"
             self.robot.set_dof_values(q)  # needed for *.vel(t)
             self.robot.display_com(q)
             self.robot.display_floor_com(q)
