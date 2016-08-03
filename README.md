@@ -1,4 +1,4 @@
-# Humanoid Stair Climbing based on dedicated Plane Segment Estimation and Multi-contact Motion Generation
+# Supervoxel Plane Segmentation and Multi-Contact Motion Generation for Humanoid Stair Climbing
 
 Source code for the motion-planning part of the [paper](https://scaron.info/research/ijhr-2016.html).
 
@@ -23,7 +23,7 @@ Paper authors:
 
 ## Requirements
 
-- [CVXOPT](http://cvxopt.org/) for its QP solver
+- [CVXOPT](http://cvxopt.org/) for quadratic programming
 - [OpenRAVE](https://github.com/rdiankov/openrave) for forward kinematics and
   visualization ([installation instructions](https://scaron.info/teaching/installing-openrave-on-ubuntu-14.04.html))
 - ``HRP4R.dae`` COLLADA model for HRP4 (md5sum: ``bb009f37a1783e3b029a77acb6b92a28``)
