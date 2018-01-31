@@ -24,8 +24,6 @@ import cvxopt.solvers
 import os
 import time
 
-cvxopt.solvers.options['show_progress'] = False  # disable cvxopt output
-
 from pymanoid import interpolate
 from pymanoid.rave import display_box
 from pymanoid.trajectory import Trajectory, PolynomialChunk
@@ -61,8 +59,8 @@ class Tracker(object):
         self.constraints = []
         self.I = eye(self.robot.nb_dof)
 
-        q_max = self.robot.dof_ulim.copy()
-        q_min = self.robot.dof_llim.copy()
+        q_max = self.robot.q_max.copy()
+        q_min = self.robot.q_min.copy()
         q_avg = .5 * (q_max + q_min)
         q_dev = .5 * (q_max - q_min)
 

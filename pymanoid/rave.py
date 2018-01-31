@@ -94,8 +94,8 @@ class RaveRobot(object):
 
     def __init__(self, env, robot_name):
         robot = env.GetRobot(robot_name)
-        robot.GetEnv().GetPhysicsEngine().SetGravity(array([0, 0, -9.81]))
-        dof_llim, dof_ulim = robot.GetDOFLimits()
+        env.GetPhysicsEngine().SetGravity(array([0, 0, -9.81]))
+        q_min, q_max = robot.GetDOFLimits()
         n = robot.GetDOF()
 
         vel_lim = robot.GetDOFVelocityLimits()
@@ -108,8 +108,8 @@ class RaveRobot(object):
                 tau_lim[dof.index] = dof.torque_limit
         robot.SetDOFVelocityLimits(1000 * vel_lim)  # current OpenRAVE bug
 
-        self.dof_llim = dof_llim
-        self.dof_ulim = dof_ulim
+        self.q_min = q_min
+        self.q_max = q_max
         self.env = env
         self.mass = sum([lnk.GetMass() for lnk in robot.GetLinks()])
         self.nb_active_dof = 0
@@ -118,8 +118,8 @@ class RaveRobot(object):
         self.torque_limits = tau_lim
 
         for dof in self.dofs:
-            dof.llim = self.dof_llim[dof.index]
-            dof.ulim = self.dof_ulim[dof.index]
+            dof.llim = self.q_min[dof.index]
+            dof.ulim = self.q_max[dof.index]
 
     def get_dof_values(self):
         return self.rave.GetDOFValues()
@@ -448,3 +448,8 @@ class RaveRobot(object):
     def display_com(self, q):
         com = self.compute_com(q)
         display_box(self.env, com, box_id="COM", thickness=0.03)
+
+    def display_floor_com(self, q):
+        com = self.compute_com(q)
+        com[2] = 0.
+        display_box(self.env, com, box_id="COM_floor", thickness=0.03)

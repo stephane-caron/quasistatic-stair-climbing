@@ -2,3 +2,4 @@
 *.pyc
 .ropeproject
 HRP4R.dae
+motion-segment*

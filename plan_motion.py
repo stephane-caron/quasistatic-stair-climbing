@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import openravepy
 import os
 import pymanoid
@@ -80,7 +79,7 @@ def segment_2():
 
     start_com = sketch.cur_com
     start_rfoot = hrp.right_foot.GetTransformPose()[4:]
-    end_rfoot = hrp.origin_for_target(hrp.right_foot, right_step)[4:]
+    end_rfoot = right_step.target + hrp.right_foot_center_from_origin
     via_points = [
         # Via point 0
         (hstack([quat_from_rpy(0, 0, 0),
@@ -107,10 +106,10 @@ def segment_2():
 def segment_3():
     print "Computing segment 3..."
     q_upper_ref = hrp.q_halfsit.copy()
-    q_upper_ref[hrp.R_SHOULDER_P.index] = -1
-    q_upper_ref[hrp.L_SHOULDER_P.index] = -1
-    q_upper_ref[hrp.R_ELBOW_P.index] = -0.9
-    q_upper_ref[hrp.L_ELBOW_P.index] = -1.2
+    q_upper_ref[hrp.R_SHOULDER_P] = -1
+    q_upper_ref[hrp.L_SHOULDER_P] = -1
+    q_upper_ref[hrp.R_ELBOW_P] = -0.9
+    q_upper_ref[hrp.L_ELBOW_P] = -1.2
 
     sketch = TrajectorySketch(hrp, hrp.get_dof_values(),
                               q_upper_ref=q_upper_ref)
@@ -131,17 +130,17 @@ def segment_3():
 def segment_4():
     print "Computing segment 4..."
     q_upper_ref = hrp.q_halfsit.copy()
-    q_upper_ref[hrp.R_SHOULDER_P.index] = -1
-    q_upper_ref[hrp.L_SHOULDER_P.index] = -1
-    q_upper_ref[hrp.R_ELBOW_P.index] = -0.9
-    q_upper_ref[hrp.L_ELBOW_P.index] = -1.2
+    q_upper_ref[hrp.R_SHOULDER_P] = -1
+    q_upper_ref[hrp.L_SHOULDER_P] = -1
+    q_upper_ref[hrp.R_ELBOW_P] = -0.9
+    q_upper_ref[hrp.L_ELBOW_P] = -1.2
     sketch = TrajectorySketch(hrp, hrp.get_dof_values(),
                               q_upper_ref=q_upper_ref)
     sketch.contact_link(hrp.right_foot)
 
     start_com = sketch.cur_com
     start_lfoot = hrp.left_foot.GetTransformPose()[4:]
-    end_lfoot = hrp.origin_for_target(hrp.left_foot, left_step)[4:]
+    end_lfoot = left_step.target + hrp.left_foot_center_from_origin
     via_points = [
         # Via point 0
         (hstack([quat_from_rpy(0, pi / 4, 0),
@@ -203,10 +202,10 @@ if __name__ == "__main__":
     env.Load('env.xml')
 
     hrp = pymanoid.hrp4.HRP4(env)
-    hrp.q_max[hrp.R_SHOULDER_R.index] = -0.1
-    hrp.q_min[hrp.L_SHOULDER_R.index] = +0.1
-    hrp.q_max[hrp.R_KNEE_P.index] = 80. * pi / 180.
-    hrp.set_transparency(0)
+    hrp.q_max[hrp.R_SHOULDER_R] = -0.1
+    hrp.q_min[hrp.L_SHOULDER_R] = +0.1
+    hrp.q_max[hrp.R_KNEE_P] = 80. * pi / 180.
+    hrp.set_transparency(0.5)
 
     env.SetViewer('qtcoin')
     viewer = env.GetViewer()
@@ -226,7 +225,7 @@ if __name__ == "__main__":
 
     rectangles = Rectangles(env, rect_file)
     q_start = hrp.q_halfsit.copy()
-    q_start[hrp.TRANS_X.index] -= 0.15
+    q_start[hrp.TRANS_X] -= 0.15
     hrp.set_dof_values(q_start)
     left_pose = hrp.left_foot.GetTransformPose()
     left_pose[6] -= 0.01 + 0.06

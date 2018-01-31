@@ -102,3 +102,7 @@ class PseudoFoot(Box):
             if not patch.covers(cx, cy):
                 return True
         return False
+
+    @property
+    def target(self):
+        return self.pose[4:] + array([0., 0., 0.16])

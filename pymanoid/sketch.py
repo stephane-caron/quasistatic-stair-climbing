@@ -26,6 +26,7 @@ import pylab
 
 from pymanoid.inverse_kinematics import VelocityTracker
 from pymanoid.inverse_kinematics import VelocityConstraint
+from pymanoid.rave import display_box
 from pymanoid.trajectory import Trajectory, LinearChunk
 from numpy import array, dot, hstack, ones, zeros
 from pylab import norm
@@ -92,10 +93,10 @@ class TrajectorySketch(object):
     def attract_dof(self, tracker, dof, ref_value):
         def vel_fun(t):
             q = self.robot.get_dof_values()
-            return ref_value - q[dof.index]
+            return ref_value - q[dof]
 
         J = zeros(len(self.cur_q))
-        J[dof.index] = 1.
+        J[dof] = 1.
         tracker.add_objective(VelocityConstraint(
             vel_fun, lambda q: J, gain=1.), weight=1e-3)
 
@@ -105,8 +106,7 @@ class TrajectorySketch(object):
         for link in self.contacting_links:
             self.fix_link(tracker, link)
         for dof in set(self.robot.upper_dofs) | set(self.robot.base_rot_dofs):
-            self.attract_dof(tracker, dof,
-                             ref_value=self.q_upper_ref[dof.index])
+            self.attract_dof(tracker, dof, ref_value=self.q_upper_ref[dof])
         return tracker
 
     def check_com_positions(self, com_positions):
@@ -188,7 +188,7 @@ class TrajectorySketch(object):
         b, A = H[:, 0], H[:, 1:]
         for com in com_positions:
             if not all(dot(A, com[:2]) + b >= 0):
-                raise Exception("Unstale CoM")
+                raise Exception("Unstable CoM")
 
     def add_linear_com_objective(self, tracker, start_com, target_com, gain):
         self.check_com_positions([start_com, target_com])
@@ -197,9 +197,9 @@ class TrajectorySketch(object):
             start_com, target_com, T=tracker.duration)
 
         if all_plots:
-            pylab.plot([start_com[0], target_com[0]],
-                    [start_com[1], target_com[1]],
-                    'r--', lw=5)
+            pylab.plot(
+                [start_com[0], target_com[0]], [start_com[1], target_com[1]],
+                'r--', lw=5)
 
         def vel_fun(t):
             # display_box(self.robot.env, target_com, color='g')
@@ -219,7 +219,7 @@ class TrajectorySketch(object):
         def vel_fun(t):
             steering_pose = target_pose - link.GetTransformPose()
             steering_pose[4:] = link_pos_traj.qd(t)
-            # display_box(self.robot.env, target_pose[4:], color='b')
+            display_box(self.robot.env, target_pose[4:], color='b')
             return steering_pose
 
         def jacobian(q):
