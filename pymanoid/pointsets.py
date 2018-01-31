@@ -18,14 +18,13 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import itertools
 
-from pymanoid.bodies import Box
 from numpy import array, cos, cross, dot, int64, sin, vstack
 from pylab import norm
-from scipy.spatial import KDTree
+from pymanoid.bodies import Box
 from scipy.spatial import ConvexHull
+from scipy.spatial import KDTree
 
 
 def draw_polyhedron(env, points, color=None, plot_type=6, precomp_hull=None,

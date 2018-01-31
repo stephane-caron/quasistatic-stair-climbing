@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import openravepy
 
 from numpy import array, dot, eye
@@ -96,12 +95,6 @@ class PseudoFoot(Box):
     def __init__(self, env, name, pose=None, color='g', transparency=0.2):
         super(PseudoFoot, self).__init__(
             env, name, [FOOT_X, FOOT_Y, FOOT_Z], pose, color, transparency)
-
-    def is_outside_of_patch(self, patch):
-        for (cx, cy, _) in self.corners:
-            if not patch.covers(cx, cy):
-                return True
-        return False
 
     @property
     def target(self):

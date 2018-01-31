@@ -18,18 +18,17 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
-import pymanoid.bodies as bodies
 import cdd
 import matplotlib
 import pylab
+import pymanoid.bodies as bodies
 
-from pymanoid.inverse_kinematics import VelocityTracker
-from pymanoid.inverse_kinematics import VelocityConstraint
-from pymanoid.rave import display_box
-from pymanoid.trajectory import Trajectory, LinearChunk
 from numpy import array, dot, hstack, ones, zeros
 from pylab import norm
+from pymanoid.inverse_kinematics import VelocityConstraint
+from pymanoid.inverse_kinematics import VelocityTracker
+from pymanoid.rave import display_box
+from pymanoid.trajectory import Trajectory, LinearChunk
 from scipy.linalg import block_diag
 from scipy.spatial import ConvexHull
 

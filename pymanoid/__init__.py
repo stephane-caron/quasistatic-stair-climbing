@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 from rave import RaveRobot
 from rotation import quat_from_rpy, rpy_from_quat
 from trajectory import Trajectory

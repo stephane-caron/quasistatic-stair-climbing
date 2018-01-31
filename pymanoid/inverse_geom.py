@@ -18,15 +18,15 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import cvxopt
 import cvxopt.solvers
 import pylab
 
-cvxopt.solvers.options['show_progress'] = False
-
 from numpy import array, zeros, dot, hstack, vstack
 from pymanoid.all_ik import VirtualTracker
+
+
+cvxopt.solvers.options['show_progress'] = False
 
 
 class ConvergenceFailed(Exception):

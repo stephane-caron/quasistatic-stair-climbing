@@ -18,21 +18,17 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import cvxopt
 import cvxopt.solvers
 import os
 import time
 
+from numpy import arange, array, minimum, maximum, zeros
+from numpy import dot, eye, hstack, ones, vstack
 from pymanoid import interpolate
 from pymanoid.rave import display_box
 from pymanoid.trajectory import Trajectory, PolynomialChunk
-from numpy import arange, minimum, maximum, zeros
-from numpy import dot, vstack, hstack, array
 
-from numpy import eye, ones
-import cvxopt
-import cvxopt.solvers
 
 cvxopt.solvers.options['show_progress'] = False  # disable cvxopt output
 

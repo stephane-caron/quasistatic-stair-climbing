@@ -18,10 +18,9 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import bisect
-import pymanoid
 import numpy
+import pymanoid
 
 from numpy import poly1d, polyder, zeros
 

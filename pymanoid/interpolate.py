@@ -18,11 +18,10 @@
 # You should have received a copy of the GNU General Public License along with
 # pymanoid. If not, see <http://www.gnu.org/licenses/>.
 
-
 import vector
 
-from trajectory import PolynomialChunk
 from numpy import poly1d
+from trajectory import PolynomialChunk
 
 
 def poly2(q0, q1, qd0=None, qd1=None, **kwargs):
