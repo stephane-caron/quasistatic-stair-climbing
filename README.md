@@ -36,7 +36,7 @@ copyright.
 
 Run ``python plan_motion.py`` from the top-level directory.
 
-## Follow-up
+## Later work
 
 See also [this work
 (2018)](https://scaron.info/publications/stair-climbing.html) for some dynamic
