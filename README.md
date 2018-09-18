@@ -1,6 +1,6 @@
 # Supervoxel Plane Segmentation and Multi-Contact Motion Generation for Humanoid Stair Climbing
 
-Source code for the motion-planning part of the [paper](https://scaron.info/research/ijhr-2016.html).
+Source code for the motion-planning part of [this paper](https://scaron.info/research/ijhr-2016.html).
 
 ## Abstract
 
@@ -16,7 +16,7 @@ generated trajectories in a real-life experiment with the humanoid robot HRP-4.
 
 <img src="https://scaron.info/images/ijhr-2016.png" width="500" align="center" />
 
-Paper authors:
+Authors:
 [Zhang Tianwei](http://zhangtianwei.info/),
 [Stéphane Caron](https://scaron.info) and
 [Yoshihiko Nakamura](http://www.ynl.t.u-tokyo.ac.jp/).
@@ -35,3 +35,9 @@ copyright.
 ## Usage
 
 Run ``python plan_motion.py`` from the top-level directory.
+
+## Follow-up
+
+See also [this work
+(2018)](https://scaron.info/publications/stair-climbing.html) for some dynamic
+stair climbing.
